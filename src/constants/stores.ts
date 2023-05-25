@@ -47,30 +47,6 @@ export const ABANDONED_SOURCES = 'abandonedSources';
 
 export const LOCAL_STORAGE_ENABLED = localStorageIsEnabled();
 
-function updateUrl(navigationHierarchy: NavigationHierarchy): void {
-    setParameter('cat', navigationHierarchy.category);
-    setParameter('item', navigationHierarchy.item);
-    setParameter('source', navigationHierarchy.source);
-
-    let newPath = window.location.pathname;
-    const parameterString = urlParams.toString();
-
-    if (parameterString) {
-        newPath += '?' + parameterString;
-    }
-
-    window.history.pushState(null, '', newPath);
-}
-
-function setParameter(key: string, value: Category | Item | Source): void {
-    if (value) {
-        urlParams.set(key, value.name);
-    }
-    else {
-        urlParams.delete(key);
-    }
-}
-
 export function matchesFilterSettings(source: Source): boolean {
     let requirementsMatch: boolean = true;
 
@@ -103,5 +79,29 @@ function localStorageIsEnabled(): boolean {
         return true;
     } catch (e) {
         return false;
+    }
+}
+
+function updateUrl(navigationHierarchy: NavigationHierarchy): void {
+    setParameter('cat', navigationHierarchy.category);
+    setParameter('item', navigationHierarchy.item);
+    setParameter('source', navigationHierarchy.source);
+
+    let newPath = window.location.pathname;
+    const parameterString = urlParams.toString();
+
+    if (parameterString) {
+        newPath += '?' + parameterString;
+    }
+
+    window.history.pushState(null, '', newPath);
+}
+
+function setParameter(key: string, value: Category | Item | Source): void {
+    if (value) {
+        urlParams.set(key, value.name);
+    }
+    else {
+        urlParams.delete(key);
     }
 }
