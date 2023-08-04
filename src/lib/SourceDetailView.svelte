@@ -209,7 +209,7 @@
                 </button>
             </div>
         </div>
-        <div class="row" class:d-none={!LOCAL_STORAGE_ENABLED}>
+        <div class="row" class:d-none={LOCAL_STORAGE_ENABLED}>
             <div class="col">
                 Please note that tracking and abandoning sources requires your browser's local data storage to be enabled.
                 This data, by design, cannot be transmitted away from your local machine, but the rest of the page will still
